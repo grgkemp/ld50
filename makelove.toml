@@ -1,0 +1,15 @@
+name = "ld50practice"
+default_targets = ["lovejs", "win64", "macos"]
+build_directory = "builds"
+
+
+love_files = [
+    "::git-ls-tree::",
+    "-*/.*",
+]
+
+[lovejs]
+love_binaries = "C:\\Users\\George\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\\LocalCache\\Local\\makelove\\makelove\\Cache\\love-binaries\\11.3\\lovejs"
+
+[win64]
+love_binaries = "C:\\Program Files\\LOVE"
