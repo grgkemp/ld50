@@ -3,6 +3,6 @@ cd /d "%~dp0" && ( if exist "%temp%\getadmin.vbs" del "%temp%\getadmin.vbs" ) &&
 
 makelove
 
-butler push builds/lovejs/ld50practice-lovejs.zip grgkemp/LD50PRACTICE:browser
-butler push builds/win64/ld50practice-win64.zip grgkemp/LD50PRACTICE:win64 
-butler push builds/macos/ld50practice-macos.zip grgkemp/LD50PRACTICE:macos
+butler push builds/lovejs/ld50-lovejs.zip grgkemp/LD50:browser
+butler push builds/win64/ld50-win64.zip grgkemp/LD50:win64 
+butler push builds/macos/ld50-macos.zip grgkemp/LD50:macos

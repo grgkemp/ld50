@@ -1,11 +1,10 @@
-name = "ld50practice"
+name = "ld50"
 default_targets = ["lovejs", "win64", "macos"]
 build_directory = "builds"
 
 
 love_files = [
     "::git-ls-tree::",
-    "./src/*",
     "-*/.*",
 ]
 
