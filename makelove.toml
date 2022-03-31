@@ -5,6 +5,7 @@ build_directory = "builds"
 
 love_files = [
     "::git-ls-tree::",
+    "./src/*",
     "-*/.*",
 ]
 
