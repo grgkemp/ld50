@@ -8,10 +8,6 @@ love_files = [
     "-*/.*",
 ]
 
-[windows.exe_metadata]
-ProductName = "malbork" # "LÖVE"
-OriginalFilename = "malbork.exe" # "love.exe"
-
 [lovejs]
 love_binaries = "C:\\Users\\George\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\\LocalCache\\Local\\makelove\\makelove\\Cache\\love-binaries\\11.3\\lovejs"
 
