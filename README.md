@@ -1,4 +1,4 @@
-# Folklore - Outside the town of Malbork
+# Outside the town of Malbork
 
 ## Tech
 

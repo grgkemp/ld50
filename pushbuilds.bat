@@ -7,6 +7,6 @@ git push
 
 makelove
 
-butler push builds/lovejs/ld50-lovejs.zip grgkemp/LD50:browser
-butler push builds/win64/ld50-win64.zip grgkemp/LD50:win64 
-butler push builds/macos/ld50-macos.zip grgkemp/LD50:macos
+butler push builds/lovejs/ld50-lovejs.zip grgkemp/malbork:browser
+butler push builds/win64/ld50-win64.zip grgkemp/malbork:win64 
+butler push builds/macos/ld50-macos.zip grgkemp/malbork:macos
