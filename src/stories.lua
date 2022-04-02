@@ -5,7 +5,7 @@ stories = {
             {["name"] = "The Local Shop", ["accessible"] = false},
             {["name"] = "The Old Fishmonger's Cottage", ["accessible"] = true,
                 ["characters"] = {
-                    {["name"] = "Grandma Bethany"}
+                    {["name"] = "Grandma"}
                 },
                 ["script"] = {
                     "You walk towards the Old Fishmonger's Cottage.",
@@ -18,7 +18,7 @@ stories = {
                 ["next"] = function() return "The Soldier and the Fishmonger's Daughter" end},
             {["name"] = "The Ruins of Uncle Matthias's Cabin", ["accessible"] = false},
         },
-        ["starting point"] = "outside",
+        ["starting point"] = "outside_night",
         ["intro"] = {
             "You walk up and over the crest of a snow covered hill. In the distance you make out a huddle of house lights.",
             "The town is unrecognisable at night, but then, your memories of this place are ones of long youthful summers.",
@@ -29,7 +29,7 @@ stories = {
         ["houses"] = {
             {["name"] = "Your Childhood Home", ["accessible"] = false,
                 ["characters"] = {
-                    {["name"] = "Brother Matthias"},
+                    {["name"] = "Matthias"},
                 },
                 ["script"] = {
                     "Instead of visiting your sweetheart, you stop in to see the old house where you grew up.",
@@ -46,10 +46,7 @@ stories = {
                 end},
             {["name"] = "The Local Shop", ["accessible"] = false},
             {["name"] = "The Fishmonger's Cottage", ["accessible"] = true,
-                ["characters"] = {
-                    {["name"] = "Bethany"},
-                    {["name"] = "Fishmonger"}
-                },
+                ["characters"] = {},
                 ["script"] = {
                     "You run towards the Fishmonger's cottage.",
                     "As you open the door your mind races, visualising the last time you saw your sweetheart before the day you got on that train.",
@@ -62,7 +59,7 @@ stories = {
                 end},
             {["name"] = "Uncle Grigor's Cabin", ["accessible"] = false},
         },
-        ["starting point"] = "outside",
+        ["starting point"] = "outside_day",
         ["intro"] = {
             "You trek down the valley to your hometown.", 
             "For the first time in 18 months the starch of your secondhand uniform doesn't bother you.",
@@ -89,7 +86,7 @@ stories = {
             {["name"] = "The Fishmonger's Cottage", ["accessible"] = false},
             {["name"] = "An empty plot of land", ["accessible"] = false},
         },
-        ["starting point"] = "outside",
+        ["starting point"] = "outside_day",
         ["intro"] = {"Step 1: Find some timber."}
     }
 }

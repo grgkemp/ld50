@@ -14,14 +14,48 @@ function draw_game_title()
 end
 
 function draw_choice()
+    draw_background(current_location)
     draw_choice_box(choices, choiceSelectionIndex, "Where should you visit now?")
 end
 
+bg_images = {
+    ["outside_night"] = love.graphics.newImage("assets/outside_night.png"),
+    ["outside_day"] = love.graphics.newImage("assets/outside_day.png"),
+    ["The Old Fishmonger's Cottage"] = love.graphics.newImage("assets/fishmongers.png"),
+    ["The Fishmonger's Cottage"] = love.graphics.newImage("assets/outside_house.png"),
+    ["The Local Shop"] = love.graphics.newImage("assets/shop.png"),
+    ["Your Childhood Home"] = love.graphics.newImage("assets/home.png"),
+    ["Jerry's Apartment"] = love.graphics.newImage("assets/jerrys_apartment.png"),
+    ["Uncle Grigor's Cabin"] = love.graphics.newImage("assets/cabin.png"),
+}
+
+char_images = {
+    ["Grandma"] = love.graphics.newImage("assets/grandma.png"),
+    ["Matthias"] = love.graphics.newImage("assets/matthias.png"),
+    ["The Shopkeeper"] = love.graphics.newImage("assets/shopkeeper.png"),
+    ["Jerry"] = love.graphics.newImage("assets/jerry.png"),
+    ["Kramer"] = love.graphics.newImage("assets/kramer.png")
+}
+
 function draw_background(location)
+    love.graphics.draw(bg_images[location],0,0)
+end
+
+function draw_characters(characters)
+    for i, value in pairs(characters) do
+        img = char_images[value["name"]]
+        x = love.graphics.getWidth()*0.6 
+        if i ~= 1 then
+            x = love.graphics.getWidth()*0.6 - img:getWidth()
+        end
+        love.graphics.draw(img, x, love.graphics.getHeight()*0.7 - img:getHeight() + 2)
+    end
 end
 
 function draw_script()
     draw_background(current_location)
+    house = get_house(current_story, current_location)
+    if house ~= nil then draw_characters(house["characters"]) end
     draw_text_box(current_text[textIndex])
 end
 
@@ -40,7 +74,7 @@ function actuate_script(direction, isAffirm)
         textIndex = textIndex + 1
         if textIndex > table.getn(current_text) then
             --NEXT !!
-            if current_location == "outside" then
+            if current_location:find("^outside") ~= nil then
                 --pick next location
                 gameState = "choice"
                 choiceSelectionIndex = 1
@@ -71,7 +105,7 @@ function actuate_choice(direction, isAffirm)
 
     if isAffirm then
         --A choice has been made
-        if current_location == "outside" then
+        if current_location:find("^outside") ~= nil then
             --Next location selected
             next_location = choices[choiceSelectionIndex]
             if next_location["accessible"] == nil or next_location["accessible"] then

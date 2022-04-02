@@ -99,7 +99,7 @@ function draw_box(x, y, width, height)
     cornerRadius = 50 * math.min(width, height) / love.graphics.getWidth()
     --black background
     love.graphics.setColor(0,0,0)
-    love.graphics.rectangle("fill", x-2, y-1, width+4, height+2, cornerRadius, cornerRadius)
+    love.graphics.rectangle("fill", x-4, y-4, width+8, height+8, cornerRadius, cornerRadius)
     --white outline
     love.graphics.setColor(1,1,1)
     love.graphics.rectangle("line", x, y, width, height, cornerRadius, cornerRadius)
@@ -119,9 +119,9 @@ function draw_game_ui()
 end
 
 function draw_text_box(text)
-    draw_box(4, love.graphics.getHeight()*0.6, love.graphics.getWidth()-8, love.graphics.getHeight()*0.4-4)
+    draw_box(8, love.graphics.getHeight()*0.7, love.graphics.getWidth()-16, love.graphics.getHeight()*0.3-8)
     love.graphics.setColor(1,1,1)
-    love.graphics.printf(text, textFont, 10, love.graphics.getHeight()*0.6+6, love.graphics.getWidth()-20, "left")
+    love.graphics.printf(text, textFont, 14, love.graphics.getHeight()*0.7+12, love.graphics.getWidth()-28, "left")
 end
 
 function draw_title(text, x, y, width, height)
