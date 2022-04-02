@@ -2,7 +2,7 @@ require("src/ui")
 require("src/game_handler")
 
 function love.load()
-    state = "game"
+    state = "menu"
     settingsOpen = false
     dx, dy, x, y = 2, 1, 0, 0
     fontSize = 18
@@ -22,6 +22,7 @@ state_tbl = {
     ["loading"] = {["draw"] = draw_stinky, ["update"] = update_stinky},
     ["menu"] = {["draw"] = draw_menu, ["update"] = update_menu, ["actuate"] = actuate_menu},
     ["game"] = {["draw"] = draw_game, ["update"] = update_game, ["actuate"] = actuate_game},
+    ["The End"] = {["draw"] = draw_end, ["update"] = update_end, ["actuate"] = actuate_end},
 }
 
 function love.draw()

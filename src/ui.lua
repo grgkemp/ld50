@@ -41,9 +41,9 @@ function draw_settings_menu()
     love.graphics.printf("Settings Menu", settingsTitleFont, 100, 160, love.graphics.getWidth() - 200, "center")
 
     local selection_tbl = {
-        [1] = {150, 260, 200, 20},
-        [2] = {150, 340, 200, 20},
-        [3] = {100, 420, love.graphics.getWidth() - 200, 20}
+        [1] = {130, 240, 180, 60},
+        [2] = {130, 320, 180, 60},
+        [3] = {200, 400, love.graphics.getWidth() - 400, 60}
     }
 
     draw_box(unpack(selection_tbl[settingsSelectionIndex]))
@@ -107,10 +107,55 @@ end
 
 
 --MENU
+menuState = 1
 function draw_menu()
+    --menu 1
+    if menuState == 1 then 
+        draw_title("LUDUM DARE 50\nA game made in 48 Hours", 0, 250, love.graphics.getWidth(), love.graphics.getHeight())
+        love.graphics.setColor(1,1,1,1)
+        love.graphics.printf("PRESS [SPACE]/[RETURN]", textFont, 0, 500, love.graphics.getWidth(), 'center')
+    elseif menuState == 2 then
+        draw_title("for Charlotte", 0, 250, love.graphics.getWidth(), love.graphics.getHeight())
+    end
 end
 
-function update_menu()
+function actuate_menu(direction, isAffirm)
+    if isAffirm then
+        menuState = menuState + 1
+        if menuState > 2 then
+            state = "game"
+        end
+    end
+end
+
+--END
+endState = 1
+function draw_end()
+    --menu 1
+    if endState == 1 then 
+        draw_title("The End", 0, 250, love.graphics.getWidth(), love.graphics.getHeight())
+    elseif endState == 2 then
+        draw_title("You reached " .. tostring(completedCount) .. "/" .. tostring(stories["size"]) .. " of the story", 0, 250, love.graphics.getWidth(), love.graphics.getHeight())
+    end
+end
+
+completedCount = 0
+function actuate_end(direction, isAffirm)
+    if isAffirm then
+        if endState == 1 then
+            endState = endState + 1
+            
+        completedCount = 0
+        for i, v in pairs(completion) do
+            completedCount = completedCount + 1
+        end
+        completion = {}
+
+        elseif endState > 2 then
+            state = "menu"
+            endState = 1
+        end
+    end
 end
 
 
@@ -121,7 +166,7 @@ end
 function draw_text_box(text)
     draw_box(8, love.graphics.getHeight()*0.7, love.graphics.getWidth()-16, love.graphics.getHeight()*0.3-8)
     love.graphics.setColor(1,1,1)
-    love.graphics.printf(text, textFont, 14, love.graphics.getHeight()*0.7+12, love.graphics.getWidth()-28, "left")
+    love.graphics.printf(text, textFont, 20, love.graphics.getHeight()*0.7+12, love.graphics.getWidth()-40, "left")
 end
 
 function draw_title(text, x, y, width, height)
@@ -129,6 +174,7 @@ function draw_title(text, x, y, width, height)
     --title
     love.graphics.setColor(1,1,1)
     love.graphics.printf(text, titleFont, x, y, width, "center")
+    fade_box(text)
 end
 
 function draw_choice_box(choices, selectionIndex, question)
@@ -142,7 +188,7 @@ function draw_choice_box(choices, selectionIndex, question)
     love.graphics.printf(question, textFont, x + 30, y + 30, width - 60, "left")
     y_offset = (height-30)/5
 
-    draw_box(x+30, y+30 + (selectionIndex*y_offset), width-60, y_offset)
+    draw_box(x+30, y+13 + (selectionIndex*y_offset), width-60, y_offset)
     for i,value in pairs(choices) do
         if value["accessible"] == nil or value["accessible"] then
             love.graphics.setColor(1,1,1)
@@ -151,4 +197,18 @@ function draw_choice_box(choices, selectionIndex, question)
         end
         love.graphics.printf(value["name"], textFont, x + 50, y + 30 + (i*y_offset), width - 100, "left")
     end
+end
+
+
+colour = 1
+lastText = ""
+function fade_box(text)
+    if lastText ~= text then
+        colour = 1
+    end
+    lastText = text
+    love.graphics.setColor(0,0,0,colour)
+    love.graphics.rectangle("fill", -100, -100, love.graphics.getWidth() + 200, love.graphics.getHeight() + 200)
+    colour = colour - 0.01
+    if colour < 0 then colour = 0 end
 end

@@ -10,6 +10,7 @@ game_state_tbl = {
     ["title"] = {["draw"] = draw_game_title, ["actuate"] = actuate_title},
     ["choice"] = {["draw"] = draw_choice, ["actuate"] = actuate_choice},
     ["script"] = {["draw"] = draw_script, ["actuate"] = actuate_script},
+    [""] = {}
 }
 
 --DRAW

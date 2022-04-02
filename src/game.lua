@@ -10,7 +10,7 @@ choiceSelectionIndex = 1
 
 --DRAW
 function draw_game_title()
-    draw_title(current_story, 0, 200, love.graphics.getWidth(), love.graphics.getHeight())
+    draw_title(current_story, 0, 250, love.graphics.getWidth(), love.graphics.getHeight())
 end
 
 function draw_choice()
@@ -27,6 +27,7 @@ bg_images = {
     ["Your Childhood Home"] = love.graphics.newImage("assets/home.png"),
     ["Jerry's Apartment"] = love.graphics.newImage("assets/jerrys_apartment.png"),
     ["Uncle Grigor's Cabin"] = love.graphics.newImage("assets/cabin.png"),
+    ["An Empty Plot of Land"] = love.graphics.newImage("assets/empty_plot.png"),
 }
 
 char_images = {
@@ -38,15 +39,25 @@ char_images = {
 }
 
 function draw_background(location)
-    love.graphics.draw(bg_images[location],0,0)
+    bg_img = bg_images[location]
+    if bg_img == nil then
+        -- iterate over whole table to get all keys
+        local keyset = {}
+        for k in pairs(bg_images) do
+            table.insert(keyset, k)
+        end
+        -- now you can reliably return a random key
+        bg_img = bg_images[keyset[math.random(#keyset)]]
+    end
+    love.graphics.draw(bg_img,0,0)
 end
 
 function draw_characters(characters)
     for i, value in pairs(characters) do
         img = char_images[value["name"]]
-        x = love.graphics.getWidth()*0.6 
+        x = love.graphics.getWidth()*0.55 
         if i ~= 1 then
-            x = love.graphics.getWidth()*0.6 - img:getWidth()
+            x = love.graphics.getWidth()*0.45 - img:getWidth()
         end
         love.graphics.draw(img, x, love.graphics.getHeight()*0.7 - img:getHeight() + 2)
     end
@@ -69,6 +80,7 @@ function actuate_title(direction, isAffirm)
     end
 end
 
+completion = {}
 function actuate_script(direction, isAffirm)
     if isAffirm then
         textIndex = textIndex + 1
@@ -82,6 +94,7 @@ function actuate_script(direction, isAffirm)
             else
                 --next story
                 current_story = get_house(current_story, current_location)["next"]()
+                completion[current_story..tostring(current_location)] = 1
                 --reset states
                 gameState = ""
                 current_location = ""
