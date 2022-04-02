@@ -1,6 +1,6 @@
 require("src/ui")
 require("src/stories")
-current_story = "The Soldier and the Fishmonger's Daughter"
+current_story = "Outside the Town of Malbork"
 gameState = ""
 current_location = ""
 current_text = {}
@@ -47,7 +47,7 @@ function actuate_script(direction, isAffirm)
                 choices = stories[current_story]["houses"]
             else
                 --next story
-                current_story = get_house(current_story, current_location)["next"]
+                current_story = get_house(current_story, current_location)["next"]()
                 --reset states
                 gameState = ""
                 current_location = ""
@@ -74,10 +74,11 @@ function actuate_choice(direction, isAffirm)
         if current_location == "outside" then
             --Next location selected
             next_location = choices[choiceSelectionIndex]
-            if next_location["accessible"] ~= nil or next_location["accessible"] then
+            if next_location["accessible"] == nil or next_location["accessible"] then
                 --if house is accessible, enter
                 current_location = next_location["name"]
                 current_text = next_location["script"]
+                textIndex = 1
                 gameState = "script"
             else
                 --house inaccessible

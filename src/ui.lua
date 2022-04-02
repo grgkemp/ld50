@@ -27,7 +27,7 @@ settingValues = {
 }
 musicVolume = 50
 sfxVolume = 100
-textFont = love.graphics.newFont(18)
+textFont = love.graphics.newFont(21)
 titleFont = love.graphics.newFont(32)
 settingsTitleFont = love.graphics.newFont(24)
 settingsFont = love.graphics.newFont(20)
@@ -144,7 +144,11 @@ function draw_choice_box(choices, selectionIndex, question)
 
     draw_box(x+30, y+30 + (selectionIndex*y_offset), width-60, y_offset)
     for i,value in pairs(choices) do
-        love.graphics.setColor(1,1,1)
+        if value["accessible"] == nil or value["accessible"] then
+            love.graphics.setColor(1,1,1)
+        else
+            love.graphics.setColor(0.4,0.4,0.4)
+        end
         love.graphics.printf(value["name"], textFont, x + 50, y + 30 + (i*y_offset), width - 100, "left")
     end
 end
