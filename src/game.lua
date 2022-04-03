@@ -93,8 +93,15 @@ function actuate_script(direction, isAffirm)
                 choices = stories[current_story]["houses"]
             else
                 --next story
-                current_story = get_house(current_story, current_location)["next"]()
                 completion[current_story..tostring(current_location)] = 1
+                current_story = get_house(current_story, current_location)["next"]()
+                print(" ")
+                countIII = 0
+                for i,v in pairs(completion) do
+                    print(i)
+                    countIII = countIII + 1
+                end
+                print(countIII)
                 song:stop()
                 song:play()
                 --reset states

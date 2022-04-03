@@ -175,7 +175,7 @@ stories = {
                     "George Kemp: Steps 5 through Step 23 are missing? Like, someone's torn out the pages?",
                     "George Kemp: ...",
                     "George Kemp: Ok - sorry, um, we'll just skip to the end?",
-                    "Step 24: Stand Back and be Proud! Take in the Majesty of Your Time, Hard Work, And Effort."..
+                    "Step 24: Stand Back and be Proud! Take in the Majesty of Your Time, Hard Work, And Effort. "..
                     "Your Family Will be Able to Enjoy your Cabin for Generations to Come!",
                     "George Kemp: ...",
                     "George Kemp: Ok that sucked?? Sorry I don't know how you can build a cabin with so little to go on...",
