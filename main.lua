@@ -8,7 +8,7 @@ function love.load()
     dx, dy, x, y = 2, 1, 0, 0
     fontSize = 18
     love.graphics.setFont(love.graphics.newFont(fontSize))
-    song = love.audio.newSource("assets/malbork.ogg", "stream")
+    song = love.audio.newSource("assets/malbork.ogg", "static")
 end
 
 function love.update(dt)
