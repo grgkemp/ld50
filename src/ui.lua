@@ -23,7 +23,7 @@ end
 
 settingValues = {
     [1] = 50, 
-    [2] = 100
+    [2] = 100,
 }
 musicVolume = 50
 sfxVolume = 100
@@ -65,7 +65,7 @@ end
 
 function actuate_settings(direction, isAffirm)
     if settingsSelectionIndex == 3 and isAffirm then
-        love.window.close()
+        love.event.quit()
     end
 
     local dir_tbl = {
@@ -135,7 +135,7 @@ function draw_end()
     if endState == 1 then 
         draw_title("The End", 0, 250, love.graphics.getWidth(), love.graphics.getHeight())
     elseif endState == 2 then
-        draw_title("You reached " .. tostring(completedCount) .. "/" .. tostring(stories["size"]) .. " of the story", 0, 250, love.graphics.getWidth(), love.graphics.getHeight())
+        draw_title("Thanks for Playing\n\nYou reached " .. tostring(completedCount) .. "/" .. tostring(stories["size"]) .. " stories", 0, 250, love.graphics.getWidth(), love.graphics.getHeight())
     end
 end
 
@@ -145,13 +145,11 @@ function actuate_end(direction, isAffirm)
         if endState == 1 then
             endState = endState + 1
             
-        completedCount = 0
-        for i, v in pairs(completion) do
-            completedCount = completedCount + 1
-        end
-        completion = {}
-
-        elseif endState > 2 then
+            completedCount = 0
+            for i, v in pairs(completion) do
+                completedCount = completedCount + 1
+            end
+        elseif endState > 1 then
             state = "menu"
             endState = 1
         end

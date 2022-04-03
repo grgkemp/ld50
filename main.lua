@@ -1,5 +1,6 @@
 require("src/ui")
 require("src/game_handler")
+song = nil
 
 function love.load()
     state = "menu"
@@ -7,9 +8,14 @@ function love.load()
     dx, dy, x, y = 2, 1, 0, 0
     fontSize = 18
     love.graphics.setFont(love.graphics.newFont(fontSize))
+    song = love.audio.newSource("assets/malbork.wav", "stream")
 end
 
 function love.update(dt)
+    if not song:isPlaying( ) then
+		love.audio.play( song )
+	end
+    song:setVolume(settingValues[1]/100)
     if not settingsOpen then
         local func = state_tbl[state]["update"]
         if(func) then

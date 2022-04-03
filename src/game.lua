@@ -95,6 +95,8 @@ function actuate_script(direction, isAffirm)
                 --next story
                 current_story = get_house(current_story, current_location)["next"]()
                 completion[current_story..tostring(current_location)] = 1
+                song:stop()
+                song:play()
                 --reset states
                 gameState = ""
                 current_location = ""
